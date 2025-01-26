@@ -12,6 +12,11 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp)
+add_executable(main src/main.cpp 
+                    src/include/opening_scene.cpp src/include/dressing_scene.cpp src/include/ending_scene.cpp src/include/scene.h 
+                    src/include/button.cpp src/include/phone.cpp src/include/clothes_selector.cpp src/include/object.h
+                    src/include/helpers.cpp src/include/helpers.h)
 target_compile_features(main PRIVATE cxx_std_17)
-target_link_libraries(main PRIVATE SFML::Graphics)
+find_package(cpplocate REQUIRED)
+target_link_libraries(main PRIVATE SFML::Graphics SFML::Audio PUBLIC cpplocate::cpplocate)
+target_include_directories(main PRIVATE src/include)
